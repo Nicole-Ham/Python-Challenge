@@ -30,7 +30,7 @@ print()
 print(f"Total Months: {rowcounter}")
 print(f"Total: ${money:,}")
 print(f"Average Change: ${sum(dictionary.values())/(rowcounter-1):.2f}") 
-# -1 one because we dont want to include the first line cause its where it started
+#-1 because we dont want to include the first line because its where it started
 
 months_list = list(dictionary.keys())
 profit_loss_list = list(dictionary.values())
@@ -44,4 +44,15 @@ highest_month = months_list[highest_index]
 print(f"Greatest Increase in Profits: {highest_month} $({highest_value:,})")
 print(f"Greatest Decrease in Profits: {lowest_month}  $({lowest_value:,})")
 print()
+
+file_to_output = os.path.join("analysis", "budget_analysis.txt")
+
+with open(file_to_output, "w") as txt_file:
+    txt_file.write(f"""    Financial Anaylsis \n
+    -------------------------------- \n
+    Total Months: {rowcounter}\n
+    Total: ${money:,}\n
+    Average Change: ${sum(dictionary.values())/(rowcounter-1):.2f}\n
+    Greatest Increase in Profits: {highest_month} $({highest_value:,})\n
+    Greatest Decrease in Profits: {lowest_month}  $({lowest_value:,})""")
 
